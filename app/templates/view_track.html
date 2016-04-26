@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>Graddy Game Music - View Track</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.0.1/jquery.rateyo.min.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">	
+					<h2> Music Track Details</h2>
+				</div>
+				
+				<div class="col-md-12">
+					<table class="col-md-8 table" style="border:1px solid #F5f5f5;">
+	        			<tr>
+		            		<td>Track Title</td>
+		            		<td>{{track.title}}</td>
+		            	</tr>
+		            	<tr>
+		            		<td>Track Geners</td>
+		            		<td>{%for genre in track.genres.all %}
+										{{ genre.name}} 
+										{% if not forloop.last %}
+										 | 
+										{% endif %} 
+									{% endfor %}]
+							</td>
+		            	</tr>
+		            	<tr>
+		            		<td>Rating</td>
+							<td><div id="rateYo"></div></td>
+		              	</tr>
+		        	</table>
+		      	</div>
+		      	<div class="col-md-12">
+		      		<span class="col-md-3"></span>	
+		      		<a href="{% url 'add-track' %}{{track.id}}/"class="btn btn-primary col-md-6">Edit Track</a>			
+		      		<span class="col-md-3"></span>
+		      	</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.0.1/jquery.rateyo.min.js"></script>
+		<script>
+			$(function(){
+				$("#rateYo").rateYo({
+					rating: {{track.rating}},
+			    	readOnly: true
+			  	});
+			});
+		</script>
+	</body>
+</html>

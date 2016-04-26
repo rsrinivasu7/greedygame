@@ -1,0 +1,72 @@
+{% load widget_tweaks %}
+<html>
+	<head>
+		<title>Graddy Game Music Track List</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">	
+					<h2> Add Music Track</h2>
+				</div>
+				
+				<div class="col-md-12 col-sm-6 col-xs-12">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<form role="form" method="post" action="{% url 'add-track' %}">
+								{% csrf_token %}
+								<input type="hidden" name="id" value="{{ track_id }}"/>
+								<div class="form-group {% if track_form.title.errors %} has-error{% endif %}">
+									<label for="{{ track_form.title.id }}" class="col-md-2 control-label">{{ track_form.title.label }}</label>
+									<div class="col-md-10">
+										{% render_field track_form.title class="form-control has-error" placeholder=track_form.title.label required="required" %}
+										<span class="help-block">
+		                            	    {{ track_form.title.help_text|escape }}
+		                            	    {% if track_form.title.errors %}
+		                            	        {% for error in track_form.title.errors %}{{ error|escape }}{% endfor %}
+		                            	    {% endif %}
+                            			</span>
+									</div>
+								</div>
+								<div class="form-group {% if track_form.rating.errors %} has-error{% endif %}">
+									<label for="{{ track_form.rating.id }}" class="col-md-2 control-label">{{ track_form.rating.label }}</label>
+									<div class="col-md-10">
+										{% render_field track_form.rating class="form-control has-error" placeholder=track_form.rating.label required="required" %}
+										<span class="help-block">
+		                            	    {{ track_form.rating.help_text|escape }}
+		                            	    {% if track_form.rating.errors %}
+		                            	        {% for error in track_form.rating.errors %}{{ error|escape }}{% endfor %}
+		                            	    {% endif %}
+                            			</span>
+									</div>
+								</div>
+								
+								<div class="form-group {% if track_form.genres.errors %} has-error{% endif %}">
+									<label class="col-md-2 control-label">Gener</label>
+									<div class="col-md-10">
+										{% render_field track_form.genres class="form-control has-error" placeholder=track_form.genres.label required="required"%}
+										<span class="help-block">
+		                            	    {{ track_form.genres.help_text|escape }}
+		                            	    {% if track_form.genres.errors %}
+		                            	        {% for error in track_form.genres.errors %}{{ error|escape }}{% endfor %}
+		                            	    {% endif %}
+                            			</span>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-2"></label>
+									<div class="col-md-10 text-right">
+										<button class="btn btn-primary">Submit</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	</body>
+</html>	

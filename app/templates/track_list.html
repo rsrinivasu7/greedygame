@@ -1,0 +1,114 @@
+<html>
+	<head>
+		<title>Graddy Game Music - Create Genre</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.0.1/jquery.rateyo.min.css">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">	
+					<h2> Music Tracks</h2>
+				</div>
+				
+				{% if messages %}
+				<div class="col-md-12 text-center">	
+					<div class="col-md-3"></div>
+					<ul class="messages col-md-6">
+					    {% for message in messages %}
+					    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+					    {% endfor %}
+					</ul>
+					<div class="col-md-3"></div>
+				</div>	
+				{% endif %}
+				
+				<div class="col-md-12 text-center">
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+						<div class="input-group col-md-12 ui-widget" >
+					    	<input type="text" class="form-control" id="tags" placeholder="Search Title...">
+					   	</div>
+					<br/>	
+					</div>
+				</div>	
+				<div class="col-md-12">
+					<div class="col-md-2"></div>
+			    	<div class="col-md-8 table-responsive">
+			        	{% if track_list %}	
+			        		<table class="table" style="border:1px solid #F5f5f5;">
+			        			{% for item in track_list %}
+				            		<tr>
+				            			<td>{{ item.title}} [
+				            				{%for genre in item.genres.all %}
+												{{ genre.name}} 
+												{% if not forloop.last %}
+												 | 
+												{% endif %} 
+											{% endfor %}]	
+										</td>
+										<td><div id="rateYo{{forloop.counter}}"></div></td>
+				              		</tr>
+				              	{% endfor %}
+				        	</table>
+				        {% else %}
+				        	<div class="col-md-8 text-center" style="margin:40px;"><h2>No Records Found</h2></div>
+				        {% endif %}	
+			      	</div>
+			      	<div class="col-md-2"></div>
+		      	</div>
+		      	<div class="col-md-12">
+		      		<span class="col-md-3"></span>	
+		      		<a href="{% url 'add-track' %}"class="btn btn-primary col-md-6">Add New Track</a>			
+		      		<span class="col-md-3"></span>
+		      	</div>
+		      	
+		      	<div class="col-md-12">
+		      		<span class="col-md-3"></span>	
+		      		<div class="col-md-6  text-center	">
+			      		<ul class="pagination">
+				      		{% for num in track_list.paginator.page_range %}
+		  						{% ifequal num track_list.number %}
+		    						<li class="active"><a href="#">{{ num }}</a></li>
+		  						{% else %}
+		    						<li><a href="{% url 'track-list' %}?page={{ num }}">{{ num }}</a></li>
+		  						{% endifequal %} 
+							{% endfor %}
+						</ul>	
+			      	</div>			
+		      		<span class="col-md-3"></span>
+		      	</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.0.1/jquery.rateyo.min.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<script>
+			{% for item in track_list %}
+				$(function(){
+					$("#rateYo{{forloop.counter}}").rateYo({
+						{% if item.rating < 0  %}
+						rating: 0,
+						{% else %}
+						rating: {{item.rating}},
+						{% endif %}
+				    	readOnly: true
+				  	});
+				});	
+	  		{% endfor %}
+	  		
+	  		$(function() {
+	  		  $("#tags").autocomplete({
+	  		    source: "{% url 'search-track' %}",
+	  		    minLength: 2,
+	  		  	select: function( event, ui ) { 
+	              window.location.href = "{% url 'base' %}"+ui.item.type+"/"+ui.item.id+"/";
+	          	}
+	  		  });
+	  		});
+		</script>
+	</body>
+</html>

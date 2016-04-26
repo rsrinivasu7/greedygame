@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>Graddy Game Music - Genre List</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.0.1/jquery.rateyo.min.css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+					
+				<div class="col-md-12 text-center">	
+					<h2> Track's Genres</h2>
+				</div>
+				
+				{% if messages %}
+				<div class="col-md-12 text-center">	
+					<div class="col-md-3"></div>
+					<ul class="messages col-md-6">
+					    {% for message in messages %}
+					    <div {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+					    {% endfor %}
+					</ul>
+					<div class="col-md-3"></div>
+				</div>	
+				{% endif %}
+				
+				<div class="col-md-12">
+					<div class="col-md-2"></div>
+			    	<div class="col-md-8 table-responsive">
+				       {% if genre_list %}
+				        	<table class="table" style="border:1px solid #F5f5f5;">
+			        			{% for item in genre_list %}
+				            		<tr>
+				            			<td>{{ item.name}}</td>
+				              		</tr>
+				              	{% endfor %}
+				        	</table>   
+			        	{% else %}
+				        	<div class="col-md-8 text-center" style="margin:40px;"><h2>No Records Found</h2></div>
+				        {% endif %}
+			      	</div>
+			      	<div class="col-md-2"></div>
+		      	</div>
+		      	
+		      	<div class="col-md-12">
+		      		<span class="col-md-3"></span>	
+		      		<a href="{% url 'add-genre' %}"class="btn btn-primary col-md-6">Add New Genre</a>			
+		      		<span class="col-md-3"></span>
+		      	</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>	
+		
+	</body>
+</html>
