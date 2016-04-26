@@ -1,1 +1,1 @@
-web: gunicorn greedygame.wsgi
+web: gunicorn gradygame.wsgi
