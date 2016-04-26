@@ -4,4 +4,3 @@ whitenoise
 django
 django-widget-tweaks
 dj-database-url
-psycopg2
