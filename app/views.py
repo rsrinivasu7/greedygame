@@ -67,7 +67,7 @@ def add_track(request,pk=0):
 			if pk != 0 :
 				messages.warning(request, 'Track Object Not Found.')
 				return track_list(request)
-			track_form = TrackForm(instance = track)
+		track_form = TrackForm(instance = track)
 	return render_to_response('add_track.html', {"track_form":track_form,"track_id":pk}, context_instance=RequestContext(request))
 
 def track_list(request):
