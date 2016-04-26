@@ -76,10 +76,9 @@ WSGI_APPLICATION = 'graddygame.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+
 DATABASES = {
-    'default': {
-		dj_database_url.config(default='sqlite:///db.sqlite')
-    }
+	'default': dj_database_url.config(default='postgres://hbqjowrlwtdonk:CskH_tr8JTsz_qQbWpW-nBpZTZ@ec2-54-163-245-162.compute-1.amazonaws.com:5432/d86olan7rjnnfn')
 }
 
 
