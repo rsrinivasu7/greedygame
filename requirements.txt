@@ -1,4 +1,7 @@
-Django
+dj-database-url 
+gunicorn 
+whitenoise
+django
 django-widget-tweaks
 dj-database-url
 psycopg2
