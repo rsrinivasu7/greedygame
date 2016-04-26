@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Graddy Game Music - View Track</title>
+		<title>Graddy Game Music - View Genre</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	</head>
 	<body>
@@ -10,7 +10,22 @@
 				<div class="col-md-12 text-center">	
 					<h2> Genre Details</h2>
 				</div>
+			</div>
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li><a href="{% url 'track-list' %}">Tracks </a></li>
+								<li class="active"><a href="{% url 'genre-list' %}">Genres</a></li>
+								<li><a href="{% url 'add-track' %}">Add Track</a></li>
+								<li><a href="{% url 'add-genre' %}">Add Genre</a></li>
+							</ul>
+						</div>
+					</div><!-- /.container-fluid -->
+				</nav>
 				
+			<div class="row">
 				<div class="col-md-12 text-center">
 					<table class="col-md-6 table" style="border:1px solid #F5f5f5;width:500px;">
 	        			<tr>

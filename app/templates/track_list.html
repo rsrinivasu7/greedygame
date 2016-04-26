@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Graddy Game Music - Create Genre</title>
+		<title>Greedy Game Music - Music Tracks</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.0.1/jquery.rateyo.min.css">
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -12,6 +12,21 @@
 				<div class="col-md-12 text-center">	
 					<h2> Music Tracks</h2>
 				</div>
+			</div>
+			<div class="row">			
+				<nav class="navbar navbar-default">
+					<div class="container-fluid">
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav">
+								<li class="active"><a href="{% url 'track-list' %}">Tracks </a></li>
+								<li><a href="{% url 'genre-list' %}">Genres</a></li>
+								<li><a href="{% url 'add-track' %}">Add Track</a></li>
+								<li><a href="{% url 'add-genre' %}">Add Genre</a></li>
+							</ul>
+						</div>
+					</div><!-- /.container-fluid -->
+				</nav>
 				
 				{% if messages %}
 				<div class="col-md-12 text-center">	

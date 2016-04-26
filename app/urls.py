@@ -18,7 +18,7 @@ from django.conf.urls import url
 from app import views
 
 urlpatterns = [
-    url(r'^$', views.home, name='base'),
+    url(r'^$', views.track_list, name='base'),
     
     url( r'^genres/(?P<pk>\d+)/$', views.genre, name="genre"),
     url(r'^genres/$', views.genre_list, name='genre-list'),
